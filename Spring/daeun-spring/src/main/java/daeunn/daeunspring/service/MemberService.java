@@ -2,13 +2,21 @@ package daeunn.daeunspring.service;
 
 import daeunn.daeunspring.domain.Member;
 import daeunn.daeunspring.repository.MemberRepository;
-import daeunn.daeunspring.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    // private final MemberRepository memberRepository = new MemoryMemberRepository();
+
+    // -> MemberService, MemberServiceTest가 같은 Repo를 쓰게 하기위한 수정
+    // 1. new 삭제
+    private final MemberRepository memberRepository;
+
+    // 2. MemberRepository를 직접 생성하는것이 아닌, 외부에서 넣어주는 방식으로 수정
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 회원 가입
