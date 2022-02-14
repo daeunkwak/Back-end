@@ -2,10 +2,13 @@ package daeunn.daeunspring.service;
 
 import daeunn.daeunspring.domain.Member;
 import daeunn.daeunspring.repository.MemberRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+// @Service -> 스프링 컨테이너에 등록해준다
 public class MemberService {
     // private final MemberRepository memberRepository = new MemoryMemberRepository();
 
