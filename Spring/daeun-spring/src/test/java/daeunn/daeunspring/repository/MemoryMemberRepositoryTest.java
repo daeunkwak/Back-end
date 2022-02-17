@@ -22,11 +22,14 @@ class MemoryMemberRepositoryTest {
     // main함수 작성 느낌
     @Test
     public void save(){
+        // given
         Member member = new Member();
         member.setName("spring");
 
+        // when
         repository.save(member);
 
+        // then
         // get()을 통해 Optional 객체 꺼내기
         Member result = repository.findById(member.getId()).get();
         // System.out.println("result = " + (result == member));
@@ -42,6 +45,7 @@ class MemoryMemberRepositoryTest {
 
     @Test
     public void findByName(){
+        // given
         // spring1, spring2라는 회원이 가입된 상황
         Member member1 = new Member();
         member1.setName("spring1");
@@ -51,13 +55,16 @@ class MemoryMemberRepositoryTest {
         member2.setName("spring1");
         repository.save(member2);
 
+        // when
         Member result = repository.findByName("spring1").get();
 
+        // then
         assertThat(result).isEqualTo(member1);
     }
 
     @Test
     public void findAll(){
+        // given
         Member member1 = new Member();
         member1.setName("spring1");
         repository.save(member1);
@@ -66,8 +73,10 @@ class MemoryMemberRepositoryTest {
         member2.setName("spring1");
         repository.save(member2);
 
+        // when
         List<Member> result = repository.findAll();
 
+        // then
         // member 2개를 만들고 isEqaulTo(3)으로 돌리면 Error
         assertThat(result.size()).isEqualTo(2);
 
