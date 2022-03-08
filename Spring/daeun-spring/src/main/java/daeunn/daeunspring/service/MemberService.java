@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-// @Service -> 스프링 컨테이너에 등록해준다
 public class MemberService {
     // private final MemberRepository memberRepository = new MemoryMemberRepository();
 
@@ -47,12 +45,15 @@ public class MemberService {
     }
 
     /**
-     * 전체 회원 조회
+     * 전체회원 조회
      */
     public List<Member> findMembers(){
         return memberRepository.findAll();
     }
 
+    /**
+     * id로 특정회원 조회
+     */
     public Optional<Member> findOne(Long memberId){
         return memberRepository.findById(memberId);
     }
