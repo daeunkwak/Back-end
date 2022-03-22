@@ -1,16 +1,26 @@
 package daeunn.daeunspring.service;
 
 import daeunn.daeunspring.domain.Member;
+import daeunn.daeunspring.repository.MemberRepository;
 import daeunn.daeunspring.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+
+import javax.transaction.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
+
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
 
     // MemberService memberService = new MemberService();
     //MemoryMemberRepository memberRepository = new MemoryMemberRepository();
@@ -20,8 +30,8 @@ class MemberServiceTest {
     // static이 아니면 다른 DB가 되는 상황 -> 문제 발생
 
     // => 해결 <-> BeforeEach
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
+    // MemberService memberService;
+    // MemoryMemberRepository memberRepository;
 
     @BeforeEach // 3. 동작하기 전에 memberRepository를 직접 넣어준다 <-> DI(Dependency Injection)
     public void beforeEach(){
@@ -31,12 +41,13 @@ class MemberServiceTest {
 
 
     // 여기서도 callback method 함수가 끝날 때마다 호출
-    @AfterEach
-    public void afterEach(){
-        memberRepository.clearStore();
-    }
+//    @AfterEach
+//    public void afterEach(){
+//        memberRepository.clearStore();
+//    }
 
     @Test
+    @Commit // -> DB에 반영됨
     void 회원가입() {
         // 중복검사를 해서 예외가 터지는지도 잘 확인해야함 -> 중복검사 메소드도 생성
         // given

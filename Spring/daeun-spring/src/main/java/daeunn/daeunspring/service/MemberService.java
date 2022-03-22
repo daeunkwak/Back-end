@@ -2,11 +2,13 @@ package daeunn.daeunspring.service;
 
 import daeunn.daeunspring.domain.Member;
 import daeunn.daeunspring.repository.MemberRepository;
-import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional // 회원가입 할 때만 필요하긴 하다
+// -> 회원가입의 모든 과정이 Transaction 안에서 수행되도록
 public class MemberService {
     // private final MemberRepository memberRepository = new MemoryMemberRepository();
 
