@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test # connection할 DB url
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create  # app 로딩시점에 table 모두 drop하고 생성
+    properties:
+      hibernate:
+        # show_sql: true <-> jpa가 실행하는 쿼리를 console에 모두 찍 -> log로
+        format_sql: true  # formatting돼서 이쁘게 나오도록
+logging.level:
+  org.hibernate.SQL: debug
+#  org.hibernate.type: trace <-> query parameter까지 볼 수 있음
